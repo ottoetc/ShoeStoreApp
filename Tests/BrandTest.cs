@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace ShoeStore
 {
-  public class BrandTest
+  public class BrandTest : IDisposable
   {
     public BrandTest()
     {
@@ -19,6 +19,28 @@ namespace ShoeStore
 
       Assert.Equal(0, result);
     }
+    [Fact]
+    public void Test_EqualOverrideTrue()
+    {
+      Brand firstBrand = new Brand("Nike");
+      Brand secondBrand = new Brand("Nike");
 
+      Assert.Equal(firstBrand, secondBrand);
+    }
+    [Fact]
+    public void Test_Save()
+    {
+      Brand testBrand = new Brand("Nike");
+      testBrand.Save();
+
+      List<Brand> allBrands = Brand.GetAll();
+      List<Brand> testList = new List<Brand>{testBrand};
+
+      Assert.Equal(testList, allBrands);
+    }
+    public void Dispose()
+    {
+      Brand.DeleteAll();
+    }
   }
 }

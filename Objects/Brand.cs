@@ -40,6 +40,13 @@ namespace ShoeStore
     {
       _name = newName;
     }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM brands;", conn);
+      cmd.ExecuteNonQuery();
+    }
     public static List<Brand> GetAll()
     {
       List<Brand> allBrands = new List<Brand>{};
@@ -67,6 +74,35 @@ namespace ShoeStore
         conn.Close();
       }
       return allBrands;
+    }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO brands(name) OUTPUT INSERTED.id VALUES(@BrandName);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@BrandName";
+      nameParameter.Value = this.GetName();
+
+      cmd.Parameters.Add(nameParameter);
+
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
   }
