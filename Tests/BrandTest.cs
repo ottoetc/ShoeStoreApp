@@ -38,6 +38,19 @@ namespace ShoeStore
 
       Assert.Equal(testList, allBrands);
     }
+    [Fact]
+    public void Test_SaveAssignsIdtoObject()
+    {
+      Brand testBrand = new Brand("Nike");
+      testBrand.Save();
+
+      Brand savedBrand = Brand.GetAll()[0];
+
+      int savedId = savedBrand.GetId();
+      int testId = testBrand.GetId();
+
+      Assert.Equal(savedId, testId);
+    }
     public void Dispose()
     {
       Brand.DeleteAll();
