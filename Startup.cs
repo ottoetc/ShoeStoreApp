@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ShoeStore
 {
-  public class Startup
+  public class ShoeStore
   {
     public void Configure(IApplicationBuilder app)
     {
@@ -28,7 +28,7 @@ namespace ShoeStore
       return null;
     }
 
-    public IEnumerable<string> GetDefaultNameSpaces()
+    public IEnumerable<string> GetDefaultNamespaces()
     {
       return null;
     }
@@ -40,6 +40,6 @@ namespace ShoeStore
   }
   public static class DBConfiguration
   {
-    public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shoe_stores;Integrated Security=SSPI;";
+      public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shoe_stores;Integrated Security=SSPI;";
   }
 }

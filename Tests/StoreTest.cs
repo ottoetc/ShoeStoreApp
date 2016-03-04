@@ -1,14 +1,28 @@
-using System.Data;
-using System.Data.SqlClient;
-
-namespace ShoeStore
-{
-  public class DB
-  {
-    public static SqlConnection Connection()
-    {
-      SqlConnection conn = new SqlConnection(DBConfiguration.ConnectionString);
-      return conn;
-    }
-  }
-}
+// using Xunit;
+// using System.Collections.Generic;
+// using System;
+// using System.Data;
+// using System.Data.SqlClient;
+//
+// namespace ShoeStore
+// {
+//   public class StoreTest : IDisposable
+//   {
+//     public StoreTest()
+//     {
+//       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shoe_stores_test;Integrated Security=SSPI;";
+//     }
+//     [Fact]
+//     public void Test_StoreTableStartsEmpty()
+//     {
+//       int result = Store.GetAll().Count;
+//
+//       Assert.Equal(0, result);
+//     }
+//     public void Dispose()
+//     {
+//       // Store.DeleteAll();
+//       // Brand.DeleteAll();
+//     }
+//   }
+// }
