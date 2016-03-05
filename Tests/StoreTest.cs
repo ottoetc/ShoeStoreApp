@@ -80,6 +80,20 @@ namespace ShoeStore
 
       Assert.Equal(newStore.GetName(), testStore.GetName());
     }
+    [Fact]
+    public void Test_GetBrands()
+    {
+      Brand newBrand = new Brand("Nike", 1);
+      newBrand.Save();
+
+      Store newStore = new Store("Target", 1);
+      newStore.Save();
+
+      newStore.AddBrand(newBrand);
+
+      List<Brand> brands = newStore.GetBrands();
+      Assert.Equal(newBrand.GetName(), brands[0].GetName());
+    }
     public void Dispose()
     {
       Store.DeleteAll();
