@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ShoeStore
 {
-  public class ShoeStore
+  public class Startup
   {
     public void Configure(IApplicationBuilder app)
     {

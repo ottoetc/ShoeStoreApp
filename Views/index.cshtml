@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shoe Stores</title>
+    <link href="../Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../Content/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../Content/css/styles.css" rel="stylesheet" type="text/css">
+    <script src="../Content/js/jquery-1.12.0.js" type="text/javascript"></script>
+    <script src="../Content/js/bootstrap.min.js"></script>
+    <script src="../Content/js/scripts.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Shoe Store App</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>Shoe Stores</h3>
+          <ul>
+            @foreach(var store in @Model)
+            {
+              <li><a href="/store/@store.GetId()">@store.GetName()</a></li>
+            }
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <h3>Add a store</h3>
+          <form action="/stores/new" method="post">
+            <label for="store-name">Store Name</label>
+            <input id="store-name" name="store-name" type="text">
+            <button type="submit">Add</button>
+          </form>
+      </div>
+    </div>
+  </body>
+</html>
