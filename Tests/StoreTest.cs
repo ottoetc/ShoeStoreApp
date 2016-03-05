@@ -68,6 +68,18 @@ namespace ShoeStore
 
       Assert.Equal(testStoresBrands, resultStoresBrands);
     }
+    [Fact]
+    public void Test_Update()
+    {
+      Store testStore = new Store("Fred Meyer");
+      testStore.Save();
+      testStore.Update("Target");
+
+      Store newStore = new Store("Target");
+      newStore.Save();
+
+      Assert.Equal(newStore.GetName(), testStore.GetName());
+    }
     public void Dispose()
     {
       Store.DeleteAll();
