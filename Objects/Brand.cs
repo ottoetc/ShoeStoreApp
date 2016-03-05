@@ -104,6 +104,37 @@ namespace ShoeStore
         conn.Close();
       }
     }
+    public static Brand Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("SELECT * FROM brands WHERE id = @BrandId;", conn);
+      SqlParameter brandIdParameter = new SqlParameter();
+      brandIdParameter.ParameterName = "@BrandId";
+      brandIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(brandIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      int foundBrandId = 0;
+      string foundBrandName = null;
+      while(rdr.Read())
+      {
+        foundBrandId = rdr.GetInt32(0);
+        foundBrandName = rdr.GetString(1);
+      }
+      Brand foundBrand = new Brand(foundBrandName, foundBrandId);
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return foundBrand;
+    }
   }
 }
