@@ -13,25 +13,31 @@
   <body>
     <div class="jumbotron">
       <div class="container">
-        <h1>Shoe Stores</h1>
+        <h1>@Model["brand"].GetName() Shoe Stores</h1>
       </div>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <h3>All Stores</h3>
+          <h3>@Model["brand"].GetName() is sold at these stores:</h3>
           <ul>
-            @foreach(var store in @Model)
+            @foreach(var store in @Model["brandsStores"])
             {
               <li><a href="/store/@store.GetId()">@store.GetName()</a></li>
             }
           </ul>
         </div>
         <div class="col-sm-6">
-          <h3>Add a Store</h3>
-          <form action="/stores/new" method="post">
-            <label for="store-name">Store Name</label>
-            <input id="store-name" name="store-name" type="text">
+          <h3>Add a store that sells @Model["brand"].GetName()</h3>
+          <form action="/brand/add_store" method="post">
+            <input id="brand-id" name="brand-id" type="hidden" value='@Model["brand"].GetId()'>
+            <label for="store-id">Select a store</label>
+            <select id="store-id" name="store-id" type="text">
+              @foreach (var store in @Model["allStores"])
+              {
+                <option value="@store.GetId()">@store.GetName()</option>
+              }
+            </select>
             <button type="submit">Add</button>
           </form>
         </div>
