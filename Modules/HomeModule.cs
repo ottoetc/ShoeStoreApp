@@ -49,18 +49,18 @@ namespace ShoeStore
         List<Brand> allBrands = Brand.GetAll();
         return View["brands.cshtml", allBrands];
       };
-      // Get["/store/delete/{id}"] = parameters =>
-      // {
-      //   Store selectedStore = Store.Find(parameters.id);
-      //   return View["store_delete.cshtml", selectedStore];
-      // };
-      // Delete["/store/delete/{id}"] = parameters =>
-      // {
-      //   Store selectedStore = Store.Find(parameters.id);
-      //   selectedStore.Delete();
-      //   List<Store> allStores = Store.GetAll();
-      //   return View["index.cshtml", allStores];
-      // };
+      Get["/store/delete/{id}"] = parameters =>
+      {
+        Store selectedStore = Store.Find(parameters.id);
+        return View["store_delete.cshtml", selectedStore];
+      };
+      Delete["/store/delete/{id}"] = parameters =>
+      {
+        Store selectedStore = Store.Find(parameters.id);
+        selectedStore.Delete();
+        List<Store> allStores = Store.GetAll();
+        return View["stores.cshtml", allStores];
+      };
       Get["stores/{id}"] = parameters =>
       {
         Dictionary<string, object> model = new Dictionary<string, object>();

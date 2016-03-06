@@ -23,7 +23,7 @@
           <ul>
             @foreach(var store in @Model)
             {
-              <li><a href="/store/@store.GetId()">@store.GetName()</a></li>
+              <li><a href="/stores/@store.GetId()">@store.GetName()</a> | <a href="/store/delete/@store.GetId()">Delete</a></li>
             }
           </ul>
         </div>
