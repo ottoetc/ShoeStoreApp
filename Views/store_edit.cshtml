@@ -13,27 +13,23 @@
   <body>
     <div class="jumbotron">
       <div class="container">
-        <h1>Shoe Stores</h1>
+        <h1>@Model.GetName() Edit</h1>
       </div>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <h3>All Stores</h3>
-          <ul>
-            @foreach(var store in @Model)
-            {
-              <li><a href="/stores/@store.GetId()">@store.GetName()</a> | <a href="/store/delete/@store.GetId()">Delete</a> | <a href="/store/edit/@store.GetId()">Edit</a></li>
-            }
-          </ul>
+          <h3>Update Store Name</h3>
+          <form action="/store/edit/@Model.GetId()" method="post">
+            <input type="hidden" name="_method" value="PATCH">
+            <input name="store-id" type="hidden" value="@Model.GetId()">
+            <label for="store-name">Enter a new name</label>
+            <input id="store-name" name="store-name">
+            <button type="submit">Update</button>
+          </form>
         </div>
         <div class="col-sm-6">
-          <h3>Add a Store</h3>
-          <form action="/stores/new" method="post">
-            <label for="store-name">Store Name</label>
-            <input id="store-name" name="store-name" type="text">
-            <button type="submit">Add</button>
-          </form>
+
         </div>
       </div>
       <p><a href="/">Home</a></p>

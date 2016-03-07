@@ -61,6 +61,18 @@ namespace ShoeStore
         List<Store> allStores = Store.GetAll();
         return View["stores.cshtml", allStores];
       };
+      Get["/store/edit/{id}"] = parameters =>
+      {
+        Store selectedStore = Store.Find(parameters.id);
+        return View["store_edit.cshtml", selectedStore];
+      };
+      Patch["/store/edit/{id}"] = parameters =>
+      {
+        Store selectedStore = Store.Find(parameters.id);
+        selectedStore.Update(Request.Form["store-name"]);
+        List<Store> allStores = Store.GetAll();
+        return View["stores.cshtml", allStores];
+      };
       Get["stores/{id}"] = parameters =>
       {
         Dictionary<string, object> model = new Dictionary<string, object>();
