@@ -12,6 +12,20 @@ _This is a shoe store app that lists stores and brands of shoes they carry. It i
 
 * _Using Windows install Mono and make sure your .NET frameworks are up to date_
 * _Download or clone the project folder from github_
+* _In Powershell enter_ ```sqlcmd -S "(localdb)\mssqllocaldb"```
+* _Enter the following commands to create the database_
+```
+CREATE DATABASE shoe_stores;
+GO
+USE shoe_stores;
+GO
+CREATE TABLE stores (id INT IDENTITY(1,1), name VARCHAR(255));
+CREATE TABLE brands (id INT IDENTITY(1,1), name VARCHAR(255));
+CREATE TABLE brands_stores (id INT IDENTITY(1,1), store_id INT, brand_id INT);
+GO
+```
+
+
 * _Navigate to the project folder in Powershell and run "dnu restore"_
 * _Run "dnx kestrel" to launch the local server_
 * _In your web browser navigate to "localhost:5004"_
